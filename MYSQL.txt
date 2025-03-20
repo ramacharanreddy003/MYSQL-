@@ -1,0 +1,2289 @@
+				               MYSQL
+
+Microsoft Windows [Version 10.0.22631.4602]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\ckram>mysql -u root -p
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 33
+Server version: 8.0.38 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use student;
+Database changed
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name of the student | roll no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.01 sec)
+
+mysql> /* SELECT */
+mysql> SELECT *FROM STUDENT WHERE AGE="16";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT ROLL_NO,NAME_OF_THE_STUDENT,BRANCH FROM STUDENT;
++---------+---------------------+--------+
+| ROLL_NO | NAME_OF_THE_STUDENT | BRANCH |
++---------+---------------------+--------+
+|      32 | JAYASREE            | ECE    |
+|      33 | CHARAN              | CSE    |
+|      34 | AMARNADH REDDY      | MECH   |
+|      38 | RAMU                | CSE    |
+|      39 | ASIF                | CSE    |
+|      40 | SIVA                | ECE    |
+|      42 | BHARATH             | MECH   |
+|      43 | PAVAN               | AI&ML  |
+|      35 | MAHESH              | CIVIL  |
+|      47 | SUNIL               | CSE    |
+|      50 | SRAVANI             | CIVIL  |
+|      52 | VARDHAN             | AI&ML  |
+|      53 | SURESH              | MECH   |
+|      54 | KARTHIK             | AI&ML  |
+|      55 | MANOJ               | CSE    |
++---------+---------------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> /* SELECT DISTINCT */
+mysql> SELECT DISTINCT AGE FROM STUDENT;
++------+
+| AGE  |
++------+
+|   16 |
+|   17 |
+|   18 |
+|   19 |
++------+
+4 rows in set (0.01 sec)
+
+mysql> /* WITHOUT DISTINCT */
+mysql> SELECT NAME_OF_THE_STUDENT,BRANCH FROM STUDENT;
++---------------------+--------+
+| NAME_OF_THE_STUDENT | BRANCH |
++---------------------+--------+
+| JAYASREE            | ECE    |
+| CHARAN              | CSE    |
+| AMARNADH REDDY      | MECH   |
+| RAMU                | CSE    |
+| ASIF                | CSE    |
+| SIVA                | ECE    |
+| BHARATH             | MECH   |
+| PAVAN               | AI&ML  |
+| MAHESH              | CIVIL  |
+| SUNIL               | CSE    |
+| SRAVANI             | CIVIL  |
+| VARDHAN             | AI&ML  |
+| SURESH              | MECH   |
+| KARTHIK             | AI&ML  |
+| MANOJ               | CSE    |
++---------------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> /* DISTINCT */
+mysql> SELECT DISTINCT ROLL_NO,AGE FROM STUDENT;
++---------+------+
+| ROLL_NO | AGE  |
++---------+------+
+|      32 |   16 |
+|      40 |   16 |
+|      42 |   16 |
+|      35 |   17 |
+|      50 |   17 |
+|      33 |   18 |
+|      34 |   18 |
+|      38 |   18 |
+|      39 |   18 |
+|      43 |   18 |
+|      47 |   18 |
+|      52 |   18 |
+|      53 |   18 |
+|      54 |   18 |
+|      55 |   19 |
++---------+------+
+15 rows in set (0.00 sec)
+
+mysql> /* COUNTS AND RETURNS THE NO.OF DIFFERENT ELEMENTS */
+ mysql> SELECT COUNT(DISTINCT AGE)FROM STUDENT;
++---------------------+
+| COUNT(DISTINCT AGE) |
++---------------------+
+|                   4 |
++---------------------+
+1 row in set (0.01 sec)
+
+mysql> /* WHERE */
+mysql> SELECT *FROM STUDENT WHERE BRANCH="CSE";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+5 rows in set (0.00 sec)
+mysql> SELECT *FROM STUDENT WHERE PERCENTAGE<"50";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+mysql> SELECT *FROM STUDENT WHERE BRANCH <> "CSE";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> use student;
+Database changed
+mysql> select 8from student;
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> /*EQUAL OPERATOR IN WHERE*/
+mysql> SELECT *FROM STUDENT WHERE BRANCH="CSE";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE AGE <15;
+Empty set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE AGE <18;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE ROLL_NO <50;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> /* GREATER THAN OPERATOR > */
+mysql> SELECT *FROM STUDENT WHERE AGE > 15;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE PERCENTAGE >85;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE PERCENTAGE >85 AND BRANCH="CSE";;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE PERCENTAGE >85 AND BRANCH="CSE";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE PERCENTAGE >85;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+3 rows in set (0.00 sec)
+
+
+mysql> SELECT *FROM STUDENT WHERE PERCENTAGE >50 AND NAME_OF_THE_STUDENT="SIVA";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+/*GREATER THAN OR EQUAL TO*/
+mysql> SELECT *FROM STUDENT WHERE PERCENTAGE >=90;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE ROLL_NO>=55;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+/*GREATER THAN*/
+
+mysql> SELECT *FROM STUDENT WHERE ROLL_NO >50;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+4 rows in set (0.00 sec)
+/*LESS THAN OR EQUAL TO*/
+mysql> SELECT *FROM STUDENT WHERE ROLL_NO <=50;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+11 rows in set (0.00 sec)
+/*LESS THAN OR EQUAL TO*/
+mysql> SELECT *FROM STUDENT WHERE PERCENTAGE <=50;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+/*NOT EQUAL TO*/
+mysql> SELECT *FROM STUDENT WHERE PERCENTAGE <>50;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE YEAR <>3;
+Empty set (0.00 sec)
+/*BETWEEN OPERATOR*/
+mysql> SELECT *FROM STUDENT WHERE PERCENTAGE BETWEEN 80 AND 100;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+3 rows in set (0.00 sec)
+
+select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> /*LIKE OPERATOR*/
+mysql> SELECT *FROM STUDENT WHERE BRANCH LIKE 'C%';
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE BRANCH LIKE '%L';
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE NAME_OF_THE_STUDENT LIKE 'S%';
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+4 rows in set (0.01 sec)
+
+mysql> SELECT *FROM STUDENT WHERE NAME_OF_THE_STUDENT LIKE 'S%';
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE ROLL_NO LIKE'%5';
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE ROLL_NO LIKE'5%';
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+/*IN OPERATOR*/
+mysql> SELECT *FROM STUDENT WHERE BRANCH IN("CSE","ECE");
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE PERCENTAGE IN("50","60");
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE PERCENTAGE="50";
+Empty set (0.00 sec)
+
+mysql> SELECT *FROM STUDENT WHERE AGE IN("18","19");
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+10 rows in set (0.01 sec)
+/*AND operator*/
+mysql> select name_of_the_student from student where roll_no<40 and percentage<90;
++---------------------+
+| name_of_the_student |
++---------------------+
+| JAYASREE            |
+| CHARAN              |
+| AMARNADH REDDY      |
+| RAMU                |
+| ASIF                |
+| MAHESH              |
++---------------------+
+6 rows in set (0.00 sec)
+mysql> select name_of_the_student,roll_no from student where status="fail" and age<19;
++---------------------+---------+
+| name_of_the_student | roll_no |
++---------------------+---------+
+| PAVAN               |      43 |
++---------------------+---------+
+mysql> select name_of_the_student,roll_no,percentage from student where status="fail" and age<19;
++---------------------+---------+------------+
+| name_of_the_student | roll_no | percentage |
++---------------------+---------+------------+
+| PAVAN               |      43 |         37 |
++---------------------+---------+------------+
+1 row in set (0.00 sec)
+
+sql> select name_of_the_student,roll_no,year from student where percentage<50 or branch="cse";
++---------------------+---------+------+
+| name_of_the_student | roll_no | year |
++---------------------+---------+------+
+| CHARAN              |      33 | 3    |
+| RAMU                |      38 | 3    |
+| ASIF                |      39 | 3    |
+| PAVAN               |      43 | 3    |
+| SUNIL               |      47 | 3    |
+| MANOJ               |      55 | 3    |
++---------------------+---------+------+
+6 rows in set (0.00 sec)
+
+mysql> select name_of_the_student,roll_no,year,branch from student where percentage<50 or branch="cse";
++---------------------+---------+------+--------+
+| name_of_the_student | roll_no | year | branch |
++---------------------+---------+------+--------+
+| CHARAN              |      33 | 3    | CSE    |
+| RAMU                |      38 | 3    | CSE    |
+| ASIF                |      39 | 3    | CSE    |
+| PAVAN               |      43 | 3    | AI&ML  |
+| SUNIL               |      47 | 3    | CSE    |
+| MANOJ               |      55 | 3    | CSE    |
++---------------------+---------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select name_of_the_student,roll_no,year,branch,percentage from student where percentage<50 or branch="cse";
++---------------------+---------+------+--------+------------+
+| name_of_the_student | roll_no | year | branch | percentage |
++---------------------+---------+------+--------+------------+
+| CHARAN              |      33 | 3    | CSE    |         77 |
+| RAMU                |      38 | 3    | CSE    |         73 |
+| ASIF                |      39 | 3    | CSE    |         55 |
+| PAVAN               |      43 | 3    | AI&ML  |         37 |
+| SUNIL               |      47 | 3    | CSE    |         59 |
+| MANOJ               |      55 | 3    | CSE    |         91 |
++---------------------+---------+------+--------+------------+
+6 rows in set (0.00 sec)
+
+/*NOT*/
+mysql> /*not*/
+mysql> select name_of_the_student,roll_no,branch from student where not percentage >50;
++---------------------+---------+--------+
+| name_of_the_student | roll_no | branch |
++---------------------+---------+--------+
+| PAVAN               |      43 | AI&ML  |
++---------------------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql> select name_of_the_student,roll_no,branch from student where not percentage <50;
++---------------------+---------+--------+
+| name_of_the_student | roll_no | branch |
++---------------------+---------+--------+
+| JAYASREE            |      32 | ECE    |
+| CHARAN              |      33 | CSE    |
+| AMARNADH REDDY      |      34 | MECH   |
+| RAMU                |      38 | CSE    |
+| ASIF                |      39 | CSE    |
+| SIVA                |      40 | ECE    |
+| BHARATH             |      42 | MECH   |
+| MAHESH              |      35 | CIVIL  |
+| SUNIL               |      47 | CSE    |
+| SRAVANI             |      50 | CIVIL  |
+| VARDHAN             |      52 | AI&ML  |
+| SURESH              |      53 | MECH   |
+| KARTHIK             |      54 | AI&ML  |
+| MANOJ               |      55 | CSE    |
++---------------------+---------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select name_of_the_student,roll_no,branch from student where not branch="cse";
++---------------------+---------+--------+
+| name_of_the_student | roll_no | branch |
++---------------------+---------+--------+
+| JAYASREE            |      32 | ECE    |
+| AMARNADH REDDY      |      34 | MECH   |
+| SIVA                |      40 | ECE    |
+| BHARATH             |      42 | MECH   |
+| PAVAN               |      43 | AI&ML  |
+| MAHESH              |      35 | CIVIL  |
+| SRAVANI             |      50 | CIVIL  |
+| VARDHAN             |      52 | AI&ML  |
+| SURESH              |      53 | MECH   |
+| KARTHIK             |      54 | AI&ML  |
++---------------------+---------+--------+
+10 rows in set (0.00 sec)
+
+
+
+mysql> use student;
+Database changed
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+ysql> select *from student where percentage <50 order by age;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from student where age <18 and percentage <70;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+3 rows in set (0.01 sec)
+
+mysql> select *from student where age <18 or percentage <70;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select *from student where age <18 or percentage <70 order by percentage;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select *from student where age <18 and percentage <70 order by percentage;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select *from student where age <18 and percentage <70 order by percentage desc;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select *from student where age <18 and percentage <70 order by percentage asc;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select *from student order by percentage,roll_no;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> select *from student order by percentage,roll_no desc;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> select *from student order by percentage,roll_no asc;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> select *from student where percentage is null;
+Empty set (0.00 sec)
+
+mysql> select *from student where percentage is not null;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         68 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> update student set percentage="69" where roll_no="32";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         37 | Fail   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> update student set percentage="89",status="PASS" where roll_no="43";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   16 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> update student set age="20"where age<15;;
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+ERROR:
+No query specified
+
+mysql> update student set age="20"where age<15;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update student set age="20"where roll_no="32";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   16 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   16 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> update student set age="20"where roll_no="40";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set age="20"where roll_no="42";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> update student set age="20"where roll_no="42";
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+
+mysql> select *from student where percentage < 70 limit 5;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select *from student where percentage < 70 limit 5 offset 2;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select *from student where percentage <60 limit 5 offset 2;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from student where percentage limit 5 offset 2;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "_a" limit 1;
+Empty set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "__a" limit 1;
+Empty set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "a" limit 1;
+Empty set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "_a%" limit 1;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "a%" limit 1;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "a%" limit 2;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "a%" limit 3;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "%a" limit 3;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "%a" limit 0;
+Empty set (0.01 sec)
+
+mysql> select *from student where name_of_the_student like "%a" limit 2;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+
+
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| KARTHIK             |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> select *from student where status="pass" limit 5;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+
+mysql> select *from student order by percentage limit 5;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| ASIF                |      39 |   18 | CSE    | 3    |         55 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| MAHESH              |      35 |   17 | CIVIL  | 3    |         60 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+
+mysql> use student;
+Database changed
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| ANU                 |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select min(age) from student;
++----------+
+| min(age) |
++----------+
+|       17 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select min(percentage) from student;
++-----------------+
+| min(percentage) |
++-----------------+
+|               0 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select min(percentage) as least from student;
++-------+
+| least |
++-------+
+|     0 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select count(age) from student;
++------------+
+| count(age) |
++------------+
+|         16 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(percentage) from student;
++-----------------+
+| sum(percentage) |
++-----------------+
+|            1065 |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(percentage)/2 from student;
++-------------------+
+| sum(percentage)/2 |
++-------------------+
+|          532.5000 |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> select percentage/2 from student where roll_no=35;
++--------------+
+| percentage/2 |
++--------------+
+|      30.0000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(percentage) from student;
++-----------------+
+| avg(percentage) |
++-----------------+
+|         66.5625 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select count(roll_no) from student;
++----------------+
+| count(roll_no) |
++----------------+
+|             16 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(percentage) from student;
++-----------------+
+| avg(percentage) |
++-----------------+
+|         66.5625 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(percentage) from student;
++-----------------+
+| sum(percentage) |
++-----------------+
+|            1065 |
++-----------------+
+1 row in set (0.00 sec)
+
+
+mysql> select min(age) from student;
++----------+
+| min(age) |
++----------+
+|       17 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select min(percentage) from student;
++-----------------+
+| min(percentage) |
++-----------------+
+|               0 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select min(percentage) as least from student;
++-------+
+| least |
++-------+
+|     0 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select count(age) from student;
++------------+
+| count(age) |
++------------+
+|         16 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(percentage) from student;
++-----------------+
+| sum(percentage) |
++-----------------+
+|            1065 |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(percentage)/2 from student;
++-------------------+
+| sum(percentage)/2 |
++-------------------+
+|          532.5000 |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> select percentage/2 from student where roll_no=35;
++--------------+
+| percentage/2 |
++--------------+
+|      30.0000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(percentage) from student;
++-----------------+
+| avg(percentage) |
++-----------------+
+|         66.5625 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select count(roll_no) from student;
++----------------+
+| count(roll_no) |
++----------------+
+|             16 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(percentage) from student;
++-----------------+
+| avg(percentage) |
++-----------------+
+|         66.5625 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(percentage) from student;
++-----------------+
+| sum(percentage) |
++-----------------+
+|            1065 |
++-----------------+
+1 row in set (0.00 sec)
+
+
+mysql> select min(age) from student;
++----------+
+| min(age) |
++----------+
+|       17 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select min(percentage) from student;
++-----------------+
+| min(percentage) |
++-----------------+
+|               0 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select min(percentage) as least from student;
++-------+
+| least |
++-------+
+|     0 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select count(age) from student;
++------------+
+| count(age) |
++------------+
+|         16 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(percentage) from student;
++-----------------+
+| sum(percentage) |
++-----------------+
+|            1065 |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(percentage)/2 from student;
++-------------------+
+| sum(percentage)/2 |
++-------------------+
+|          532.5000 |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> select percentage/2 from student where roll_no=35;
++--------------+
+| percentage/2 |
++--------------+
+|      30.0000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(percentage) from student;
++-----------------+
+| avg(percentage) |
++-----------------+
+|         66.5625 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select count(roll_no) from student;
++----------------+
+| count(roll_no) |
++----------------+
+|             16 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(percentage) from student;
++-----------------+
+| avg(percentage) |
++-----------------+
+|         66.5625 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(percentage) from student;
++-----------------+
+| sum(percentage) |
++-----------------+
+|            1065 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select min(age) from student;
++----------+
+| min(age) |
++----------+
+|       17 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select min(percentage) from student;
++-----------------+
+| min(percentage) |
++-----------------+
+|               0 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select min(percentage) as least from student;
++-------+
+| least |
++-------+
+|     0 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select count(age) from student;
++------------+
+| count(age) |
++------------+
+|         16 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(percentage) from student;
++-----------------+
+| sum(percentage) |
++-----------------+
+|            1065 |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(percentage)/2 from student;
++-------------------+
+| sum(percentage)/2 |
++-------------------+
+|          532.5000 |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> select percentage/2 from student where roll_no=35;
++--------------+
+| percentage/2 |
++--------------+
+|      30.0000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(percentage) from student;
++-----------------+
+| avg(percentage) |
++-----------------+
+|         66.5625 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select count(roll_no) from student;
++----------------+
+| count(roll_no) |
++----------------+
+|             16 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(percentage) from student;
++-----------------+
+| avg(percentage) |
++-----------------+
+|         66.5625 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(percentage) from student;
++-----------------+
+| sum(percentage) |
++-----------------+
+|            1065 |
++-----------------+
+1 row in set (0.00 s
+
+mysql> use student;
+Database changed
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| ANU                 |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select min(age) from student;
++----------+
+| min(age) |
++----------+
+|       17 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select min(percentage) from student;
++-----------------+
+| min(percentage) |
++-----------------+
+|               0 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select min(percentage) as least from student;
++-------+
+| least |
++-------+
+|     0 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select count(age) from student;
++------------+
+| count(age) |
++------------+
+|         16 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(percentage) from student;
++-----------------+
+| sum(percentage) |
++-----------------+
+|            1065 |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(percentage)/2 from student;
++-------------------+
+| sum(percentage)/2 |
++-------------------+
+|          532.5000 |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> select percentage/2 from student where roll_no=35;
++--------------+
+| percentage/2 |
++--------------+
+|      30.0000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(percentage) from student;
++-----------------+
+| avg(percentage) |
++-----------------+
+|         66.5625 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select count(roll_no) from student;
++----------------+
+| count(roll_no) |
++----------------+
+|             16 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(percentage) from student;
++-----------------+
+| avg(percentage) |
++-----------------+
+|         66.5625 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(percentage) from student;
++-----------------+
+| sum(percentage) |
++-----------------+
+|            1065 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| ANU                 |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select min(age) from student;
++----------+
+| min(age) |
++----------+
+|       17 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select min(percentage) from student;
++-----------------+
+| min(percentage) |
++-----------------+
+|               0 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select min(percentage) as least from student;
++-------+
+| least |
++-------+
+|     0 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select count(age) from student;
++------------+
+| count(age) |
++------------+
+|         16 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(percentage) from student;
++-----------------+
+| sum(percentage) |
++-----------------+
+|            1065 |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> select sum(percentage)/2 from student;
++-------------------+
+| sum(percentage)/2 |
++-------------------+
+|          532.5000 |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> select percentage/2 from student where roll_no=35;
++--------------+
+| percentage/2 |
++--------------+
+|      30.0000 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(percentage) from student;
++-----------------+
+| avg(percentage) |
++-----------------+
+|         66.5625 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select count(roll_no) from student;
++----------------+
+| count(roll_no) |
++----------------+
+|             16 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(percentage) from student;
++-----------------+
+| avg(percentage) |
++-----------------+
+|         66.5625 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(percentage) from student;
++-----------------+
+| sum(percentage) |
++-----------------+
+|            1065 |
++-----------------+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| actors             |
+| box_office         |
+| cust               |
+| customerss         |
+| deliveryboys       |
+| fruits             |
+| heros              |
+| information_schema |
+| libraray           |
+| mobiles            |
+| movies             |
+| mysql              |
+| names              |
+| orders             |
+| performance_schema |
+| products           |
+| remuneration       |
+| staff              |
+| student            |
+| students           |
+| transactions       |
+| trial              |
+| vegetables         |
++--------------------+
+23 rows in set (0.02 sec)
+
+mysql> use student;
+Database changed
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| ANU                 |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "%re%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "_a";
+Empty set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "_h";
+Empty set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "_a";
+Empty set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "_j";
+Empty set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "__j";
+Empty set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "_j";
+Empty set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "_j%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "_m%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> --a
+    -> start with a and 2 char in length
+    -> \c
+mysql> select *from student where name_of_the_Student like "a__%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| ANU                 |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_Student like "c%n";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from student where name_of_the_Student like "v%n";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "s%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "%s";
+Empty set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "%y";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| ANU                 |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "_u";
+Empty set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "_u%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "a__%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| ANU                 |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student not like "%a";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| ANU                 |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.01 sec)
+
+mysql> select *from student where name_of_the_student not like "a%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+12 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student not like "j%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| ANU                 |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+15 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student not like "j%a";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| ANU                 |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "ch%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "ch%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from student;
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| ANU                 |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+
+mysql> select *from student where name_of_the_student like "a%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| ANU                 |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "_a%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "__a%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "a%y";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select *from student where branch like "C%E";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
++---------------------+---------+------+--------+------+------------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select *from srudent where name_of_the_student like "_a%";
+ERROR 1146 (42S02): Table 'student.srudent' doesn't exist
+mysql> select *from student where name_of_the_student like "_a%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "__e%";
+Empty set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "__r%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "r_%_";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "r_%_%";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student like "c%n";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+
+mysql> select *from student where name_of_the_student in("charan","ajay");
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| AJAY                |      56 |   19 | CSE    | 1    |         34 | FAIL   |
+| CHARAN              |      33 |   18 | CSE    | 3    |         77 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student not in("charan","ajay");
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| JAYASREE            |      32 |   20 | ECE    | 3    |         69 | PASS   |
+| AMARNADH REDDY      |      34 |   18 | MECH   | 3    |         75 | PASS   |
+| RAMU                |      38 |   18 | CSE    | 3    |         73 | PASS   |
+| ASIF                |      39 |   18 | CSE    | 3    |          0 | FAIL   |
+| SIVA                |      40 |   20 | ECE    | 3    |         90 | PASS   |
+| BHARATH             |      42 |   20 | MECH   | 3    |         56 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| SUNIL               |      47 |   18 | CSE    | 3    |         59 | PASS   |
+| SRAVANI             |      50 |   17 | CIVIL  | 3    |         71 | PASS   |
+| VARDHAN             |      52 |   18 | AI&ML  | 3    |         65 | PASS   |
+| SURESH              |      53 |   18 | MECH   | 3    |         68 | PASS   |
+| ANU                 |      54 |   18 | AI&ML  | 3    |         88 | PASS   |
+| MANOJ               |      55 |   19 | CSE    | 3    |         91 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select *from student where percentage in("50","60");
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student in("mahesh","pavan");
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
+| PAVAN               |      43 |   18 | AI&ML  | 3    |         89 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select *from student where name_of_the_student in("mahesh","pavan") and branch="cse";
++---------------------+---------+------+--------+------+------------+--------+
+| name_of_the_student | roll_no | age  | BRANCH | year | percentage | status |
++---------------------+---------+------+--------+------+------------+--------+
+| MAHESH              |      35 |   17 | CSE    | 3    |         60 | PASS   |
++---------------------+---------+------+--------+------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql>
